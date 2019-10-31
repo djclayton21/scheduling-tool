@@ -4,7 +4,15 @@ const Job = require('../models/job.js');
 
 //get all and post
 jobRouter.route('/')
-    .get()
+    .get((req, res, next) => {
+        Job.find({userId: req.user._id}, (err, foundJobs) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(200).send(foundJobs)
+        })
+    })
     .post((req, res, next) => {
         req.body.userId = req.user._id;
         const newJob = new Job(req.body);
