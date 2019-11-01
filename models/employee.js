@@ -48,4 +48,13 @@ const employeeSchema = new Schema({
     employeeNotes: String    
 })
 
+employeeSchema.pre('save', function(next){
+    const employee = this;
+    for (let i = 0; i < employee.jobs.length; i++){
+        if (employee.jobs[i]._id){
+            employee.jobs[i] = employee.jobs[i]._id
+        }
+    }
+})
+
 module.exports = mongoose.model('Employee', employeeSchema)
