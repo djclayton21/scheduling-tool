@@ -24,6 +24,8 @@ mongoose.connect('mongodb://localhost:27017/schedulingdb',
 app.use('/auth', require('./routes/authRouter.js'));
 app.use('/api', expressJwt({secret: process.env.SECRET}));
 app.use('/api/jobs', require('./routes/jobRouter.js'));
+app.use('/api/employees', require('./routes/employeeRouter.js'));
+app.use('/api/shifts', require('./routes/shiftRouter.js'));
 
 //error handling
 app.use((err, req, res, next) => {

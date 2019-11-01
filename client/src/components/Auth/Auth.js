@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css'
+import AuthForm from './AuthForm';
 
 const Auth = () => {
+    const [ signUpToggle, setSignUpToggle ] = useState(false)
     return ( 
     <div className="auth-page">
-        Auth
+        {signUpToggle ? <AuthForm formType="login" /> : <AuthForm formType="signup"/>}
+        <button onClick={() => setSignUpToggle(!signUpToggle)}>Toggle</button>
     </div>
      );
 }

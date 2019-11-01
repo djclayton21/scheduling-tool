@@ -1,18 +1,21 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const  jobSchema = new Schema({
     name: {
         type: String,
         required: true
     },
-    hourly: {
+    hourlyPay: {
         type: Number,
         default: 0
     },
     userId: {
-        type: Schema.Types.ObjectId,
+        type: ObjectId,
+        ref: 'User',
         required: true
     }
 })
+
 module.exports = mongoose.model('Job', jobSchema)

@@ -1,0 +1,57 @@
+const express = require('express')
+const shiftRouter = express.Router();
+const Shift = require('../models/shift.js')
+
+//get all/ post
+shiftRouter.route('/')
+    .get((req, res, next) => {
+        Shift.find({userId: req.user._id}, (err, foundShifts) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(200).send(foundShifts);
+        })
+    })
+    .post((req, res, next) => {
+        req.body.userId = req.user._id;
+        const newShift = new Shift(req.body)
+        newShift.save((err, savedShift) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(201).send(savedShift)
+        })
+    })
+//get one/ edit/ delete
+shiftRouter.route('/:shiftId')
+    .get((req, res, next) => {
+        Shift.findOne({_id: req.params.shiftId}, (err, foundShift) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(200).send(foundShift);
+        })
+    })
+    .delete((req, res, next) => {
+        Shift.findOneAndRemove({_id: req.params.shiftId}, (err, removedShift) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(200).send(removedShift);
+        })
+    })
+    .put((req, res, next) => {
+        Shift.findOneAndUpdate({_id: req.params.shiftId}, req.body, {new: true}, (err, updatedShift) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(200).send(updatedShift);
+        })
+    })
+
+module.exports = shiftRouter

@@ -1,12 +1,27 @@
-import React from './node_modules/react';
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../../context/UserProvider';
 
-const AuthForm = () => {
+const AuthForm = (props) => {
+    const { formType } = props
+    const initUsername = ""
+    const initPassword = ""
+    const [ username, setUsername ] = useState(initUsername)
+    const [ password, setPassword ] = useState(initPassword)
+    const submitFunction = useContext(UserContext)[formType]
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        submitFunction(username, password)
+        setUsername(initUsername)
+        setPassword(initPassword)
+    }
 
     return ( 
-        <div className="auth-form">
-            <input type="text"/>
-            <input type="text"/>
-        </div>
+        <form className="auth-form" onSubmit={handleSubmit}>
+            <input type="username" name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="username" />
+            <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="password" />
+            <button>{formType}</button>
+        </form>
      );
 }
  
