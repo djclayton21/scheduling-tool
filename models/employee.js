@@ -17,14 +17,22 @@ const employeeSchema = new Schema({
         required: true
     },
     scheduleBlocks: [{
-        blockStart: {
-            type: Date,
+        day: {
+            type: String,
+            enum: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
             required: true
         },
-        blockEnd: {
-            type: Date,
-            required: true
-        }
+        startTime: {
+            type: String,
+        },
+        endTime: {
+            type: String
+        },
+        isAllDay: {
+            type: Boolean,
+            default: false
+        },
+        blockNotes: String
     }],
     offRequests:[{
         reqStart: {
@@ -34,8 +42,10 @@ const employeeSchema = new Schema({
         reqEnd: {
             type: Date, 
             required: true
-        }
-    }]    
+        },
+        reqNotes: String
+    }],
+    employeeNotes: String    
 })
 
 module.exports = mongoose.model('Employee', employeeSchema)

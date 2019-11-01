@@ -41,7 +41,8 @@ const shiftSchema = new Schema({
         type: Number,
         default: 1
     },
-    shiftNotes: [""]
+    shiftNotes: String,
+    shiftLocation: String
 })
 
 module.exports = mongoose.model('Shift', shiftSchema)
