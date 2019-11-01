@@ -85,5 +85,6 @@ scheduleSchema.pre('save', function(next){
             schedule.sunday[i] = schedule.sunday[i]._id
         }
     }
+    next()
 })
 module.exports = mongoose.model('Schedule', scheduleSchema)

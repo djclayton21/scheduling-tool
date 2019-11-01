@@ -58,6 +58,6 @@ shiftSchema.pre('save', function(next){
     if (shift.scheduleId._id){
         shift.scheduleId = shift.scheduleId._id
     }
-
+    next()
 })
 module.exports = mongoose.model('Shift', shiftSchema)

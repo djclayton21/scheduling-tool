@@ -55,6 +55,7 @@ employeeSchema.pre('save', function(next){
             employee.jobs[i] = employee.jobs[i]._id
         }
     }
+    next()
 })
 
 module.exports = mongoose.model('Employee', employeeSchema)

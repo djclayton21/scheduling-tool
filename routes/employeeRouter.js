@@ -24,9 +24,22 @@ employeeRouter.route('/')
             return res.status(201).send(savedEmployee);
         })
     })
-
-//get employee with jobs
-employeeRouter.route('/full/:employeeId')
+  
+//get all employees per user, poplulated
+employeeRouter.route('/populated/')
+    .get((req, res, next) => {
+        Employee.find({userId: req.user._id})
+            .populate('jobs')
+            .exec((err, foundEmployees) => {
+                if (err) {
+                    res.status(500);
+                    return next(err);
+                }
+                return res.status(200).send(foundEmployees)
+            })
+    })
+//get populated employee
+employeeRouter.route('/populated/:employeeId')
     .get((req, res, next) => {
         Employee.findOne({_id: req.params.employeeId})
             .populate('jobs')
@@ -37,6 +50,18 @@ employeeRouter.route('/full/:employeeId')
                 }
                 return res.status(200).send(foundEmployee)
             })
+    })
+  
+//get all employees who can do job
+employeeRouter.route('/job/:jobId')
+    .get((req, res, next) => {
+        Employee.find({jobs: req.params.jobId, userId: req.user._id},(err, foundEmployees) => {
+            if (err) {
+                res.status(500);
+                return next(err);
+            }
+            return res.status(200).send(foundEmployees)
+        })
     })
 
 //get one/ edit/ delete
