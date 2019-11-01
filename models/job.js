@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const  jobSchema = new Schema({
-    name: {
+    jobName: {
         type: String,
         required: true
     },

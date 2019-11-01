@@ -16,30 +16,26 @@ const employeeSchema = new Schema({
         ref: 'User',
         required: true
     },
-    scheduleBlocks: {
-        type: [{
-            blockStart: {
-                type: Date,
-                required: true
-            },
-            blockEnd: {
-                type: Date,
-                required: true
-            }
-        }],
-    },
-    offRequests: {
-        type: [{
-            reqStart: {
-                type: Date,
-                required: true
-            },
-            reqEnd: {
-                type: Date, 
-                required: true
-            }
-        }]    
-    }
+    scheduleBlocks: [{
+        blockStart: {
+            type: Date,
+            required: true
+        },
+        blockEnd: {
+            type: Date,
+            required: true
+        }
+    }],
+    offRequests:[{
+        reqStart: {
+            type: Date,
+            required: true
+        },
+        reqEnd: {
+            type: Date, 
+            required: true
+        }
+    }]    
 })
 
 module.exports = mongoose.model('Employee', employeeSchema)

@@ -40,7 +40,8 @@ const shiftSchema = new Schema({
     maxEmployees: {
         type: Number,
         default: 1
-    }
+    },
+    shiftNotes: [""]
 })
 
 module.exports = mongoose.model('Shift', shiftSchema)

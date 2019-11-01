@@ -26,6 +26,7 @@ app.use('/api', expressJwt({secret: process.env.SECRET}));
 app.use('/api/jobs', require('./routes/jobRouter.js'));
 app.use('/api/employees', require('./routes/employeeRouter.js'));
 app.use('/api/shifts', require('./routes/shiftRouter.js'));
+app.use('/api/schedules', require('./routes/scheduleRouter.js'));
 
 //error handling
 app.use((err, req, res, next) => {

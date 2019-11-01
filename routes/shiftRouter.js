@@ -24,6 +24,7 @@ shiftRouter.route('/')
             return res.status(201).send(savedShift)
         })
     })
+    
 //get one/ edit/ delete
 shiftRouter.route('/:shiftId')
     .get((req, res, next) => {
