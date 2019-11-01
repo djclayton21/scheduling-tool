@@ -29,6 +29,44 @@ scheduleRouter.route('/')
             return res.status(201).send(savedSchedule)
         })
     })
+//simple versions, supports future only
+scheduleRouter.route('/simple')
+    .get((req, res, next) => {
+        let searchTime = 0;
+        if (req.query.future) {
+            searchTime = Date.now();
+        }
+        Schedule.find(
+            {userId: req.user._id, scheduleEnd: { $gte: searchTime}},
+            'scheduleStart scheduleEnd scheduleNotes',
+            (err, foundSchedules) => {
+                if (err) {
+                    res.status(500);
+                    return next(err);
+                }
+                return res.status(200).send(foundSchedules)
+            }
+        )
+    })
+//get schedule with shifts populated
+scheduleRouter.route('/populated/:scheduleId')
+    .get((req, res, next) => {
+        Schedule.findOne({_id: req.params.scheduleId})
+            .populate('monday')
+            .populate('tuesday')
+            .populate('wednesday')
+            .populate('thursday')
+            .populate('friday')
+            .populate('saturday')
+            .populate('sunday')
+            .exec((err, populatedSchedule) => {
+                if (err) {
+                    res.status(500);
+                    return next(err);
+                }
+                return res.status(200).send(populatedSchedule)
+            })
+    })
 
 //get one/ put/ delete
 scheduleRouter.route('/:scheduleId')

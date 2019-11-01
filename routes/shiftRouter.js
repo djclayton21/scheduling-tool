@@ -28,11 +28,11 @@ shiftRouter.route('/')
 //get for employee, including jobs. supports query for future only
 shiftRouter.route('/employee/:employeeId')
     .get((req, res, next) => {
-        let date = 0;
+        let searchTime = 0;
         if (req.query.future) {
-            date = Date.now();
+            searchTime = Date.now();
         }
-        Shift.find({employees: req.params.employeeId, shiftStart: { $gte: date}})
+        Shift.find({employees: req.params.employeeId, shiftStart: { $gte: searchTime}})
             .populate('job')
             .exec((err, foundShifts) => {
                 if (err) {

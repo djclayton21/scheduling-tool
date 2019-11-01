@@ -53,8 +53,8 @@ shiftSchema.pre('save', function(next){
             shift.employees[i] = shift.employees[i]._id
         }
     }
-    if (shift.jobId._id){
-        shift.jobId = shift.jobId._id
+    if (shift.job._id){
+        shift.job = shift.job._id
     }
     if (shift.scheduleId._id){
         shift.scheduleId = shift.scheduleId._id
