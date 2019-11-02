@@ -22,17 +22,22 @@ const employeeSchema = new Schema({
             enum: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
             required: true
         },
-        startTime: {
-            type: String,
-        },
-        endTime: {
-            type: String
-        },
         isAllDay: {
             type: Boolean,
             default: false
         },
-        blockNotes: String
+        startTime: {
+            type: String,
+            default: ""
+        },
+        endTime: {
+            type: String,
+            default: ""
+        },
+        blockNotes: {
+            type: String,
+            default: ""
+        }
     }],
     offRequests:[{
         reqStart: {
@@ -43,9 +48,15 @@ const employeeSchema = new Schema({
             type: Date, 
             required: true
         },
-        reqNotes: String
+        reqNotes: {
+            type: String,
+            default: ""
+        }
     }],
-    employeeNotes: String    
+    employeeNotes: {
+        type: String,
+        default: ""
+    } 
 })
 
 employeeSchema.pre('save', function(next){

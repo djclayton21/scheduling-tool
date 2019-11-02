@@ -44,7 +44,10 @@ const scheduleSchema = new Schema({
         ref: 'User',
         required: true
     },
-    scheduleNotes: [String]
+    scheduleNotes: {
+        type: String,
+        default: ""
+    }
 })
 
 scheduleSchema.pre('save', function(next){

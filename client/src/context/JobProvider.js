@@ -7,13 +7,13 @@ const JobProvider = (props) => {
     const [ jobs, setJobs ] = useState(initJobs)
     
     const createJob = (newJob) => {
-        
+        console.log('create', newJob )
     }
     const updateJob = (updatedJob) => {
-        
+        console.log('update', updatedJob)
     }
     const deleteJob = (deletedJob) => {
-        
+        console.log('delete', deletedJob)
     }
 
     return ( 

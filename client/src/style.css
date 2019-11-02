@@ -26,7 +26,6 @@ main {
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
     top: 0;
     left: 0;
     width: 100vw;
@@ -36,10 +35,11 @@ main {
 }
 .modal-full-content {
     position: relative;
+    top: 20%;
     border: 2px solid black;
-    z-index: 4;
-    background: initial;
+    background: white;
     padding: 20px;
+    height: fit-content;
 }
 .modal-full-content > button {
     position: absolute;
@@ -49,5 +49,5 @@ main {
     background: none;
     width: 20px;
     height: 20px;
-    color: red;
+    color: purple;
 }

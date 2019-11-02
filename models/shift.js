@@ -42,8 +42,14 @@ const shiftSchema = new Schema({
         type: Number,
         default: 1
     },
-    shiftNotes: String,
-    shiftLocation: String
+    shiftNotes: {
+        type: String,
+        default: ""
+    },
+    shiftLocation: {
+        type: String,
+        default: ""
+    }
 })
 
 shiftSchema.pre('save', function(next){

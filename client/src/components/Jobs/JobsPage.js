@@ -3,22 +3,40 @@ import './style.css'
 import JobTile from './JobTile';
 import { JobContext } from '../../context/JobProvider'
 import ModalFull from '../shared/ModalFull';
+import JobForm from './JobForm';
 
 const JobsPage = () => {
     const [ dialogIsOpen, setDialogIsOpen ] = useState(false)
-    const { jobs } = useContext(JobContext);
-    
+    const [ formType, setFormType ] = useState('');
+    const [ jobToEdit, setJobToEdit ] = useState(null)
+    const { jobs, deleteJob } = useContext(JobContext);
 
-    const mappedJobs = jobs.map(job => <JobTile job={job} key={job._id} />)
+    const handleAddJob = () => {
+        setFormType('createJob')
+        setDialogIsOpen(true)
+    }
+
+    const handleUpdateJob = (job) => {
+        setFormType('updateJob')
+        setJobToEdit(job)
+        setDialogIsOpen(true)
+    }
+
+    const handleDeleteJob = (job) => {
+        const confirmDelete = window.confirm(`Are you sure you want to delete '${job.jobName}'?`)
+        confirmDelete && deleteJob(job);
+    }
+
+    const mappedJobs = jobs.map(job => <JobTile job={job} handleUpdateJob={handleUpdateJob} handleDeleteJob={handleDeleteJob} key={job._id} />)
 
     return ( 
         <main className="jobs-page">
-            <button className="jobs-add-button" onClick={() => setDialogIsOpen(!dialogIsOpen)} >Add Job</button>
+            <button className="jobs-add-button" onClick={handleAddJob} >Add Job</button>
             <ul className="jobs-list">
                 {mappedJobs}
             </ul>
             {dialogIsOpen && <ModalFull setDialogIsOpen={setDialogIsOpen} >
-                <p>longer test</p>
+                <JobForm formType={formType} jobToEdit={jobToEdit} setDialogIsOpen={setDialogIsOpen} />
             </ModalFull>}
         </main>
      );
