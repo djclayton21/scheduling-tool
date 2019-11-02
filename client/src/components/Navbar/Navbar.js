@@ -5,12 +5,13 @@ import { UserContext } from '../../context/UserProvider';
 
 const Navbar = () => {
     const { logout } = useContext(UserContext);
+    
     return ( 
     <nav className="navbar">
         <Link to="/" >Home</Link>
+        <Link to="/jobs" >Jobs</Link>
         <Link to="/employees" >Employees</Link>
         <Link to="/schudule" >Schedule</Link>
-        <Link to="/jobs" >Jobs</Link>
         <button onClick={logout} >Logout</button>
     </nav>
     );
