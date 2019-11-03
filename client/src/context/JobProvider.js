@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import userAxios from '../functions/userAxios.js'
 
 export const JobContext = React.createContext();
 
@@ -7,13 +8,27 @@ const JobProvider = (props) => {
     const [ jobs, setJobs ] = useState(initJobs)
     
     const createJob = (newJob) => {
-        console.log('create', newJob )
+        userAxios.post('/api/jobs', newJob)
+            .then(res => {
+                setJobs(prevJobs => ([...prevJobs, res.data]))
+            })
+            .catch(err => console.error(err.response.data.errMsg))
     }
     const updateJob = (updatedJob) => {
-        console.log('update', updatedJob)
+        userAxios.put(`/api/jobs/${updatedJob._id}`, updatedJob)
+            .then(res => {
+                setJobs(prevJobs => prevJobs.map(job => (
+                    res.data._id === job._id ? res.data : job
+                )))
+            })
     }
     const deleteJob = (deletedJob) => {
-        console.log('delete', deletedJob)
+        userAxios.delete(`/api/jobs/${deletedJob._id}`)
+            .then(res => {
+                setJobs(prevJobs => prevJobs.filter(job => (
+                    res.data._id !== job._id
+                )))
+            })
     }
 
     return ( 

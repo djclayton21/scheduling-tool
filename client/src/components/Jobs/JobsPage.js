@@ -12,14 +12,15 @@ const JobsPage = () => {
     const { jobs, deleteJob } = useContext(JobContext);
 
     const handleAddJob = () => {
-        setFormType('createJob')
-        setDialogIsOpen(true)
+        setFormType('createJob');
+        setJobToEdit(null);
+        setDialogIsOpen(true);
     }
 
     const handleUpdateJob = (job) => {
-        setFormType('updateJob')
-        setJobToEdit(job)
-        setDialogIsOpen(true)
+        setFormType('updateJob');
+        setJobToEdit(job);
+        setDialogIsOpen(true);
     }
 
     const handleDeleteJob = (job) => {
@@ -36,7 +37,7 @@ const JobsPage = () => {
                 {mappedJobs}
             </ul>
             {dialogIsOpen && <ModalFull setDialogIsOpen={setDialogIsOpen} >
-                <JobForm formType={formType} jobToEdit={jobToEdit} setDialogIsOpen={setDialogIsOpen} />
+                <JobForm formType={formType} jobToEdit={jobToEdit} setDialogIsOpen={setDialogIsOpen} dialogIsOpen={dialogIsOpen} />
             </ModalFull>}
         </main>
      );

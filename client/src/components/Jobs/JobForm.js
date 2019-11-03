@@ -6,19 +6,26 @@ const JobForm = (props) => {
     const { [formType]: submitFunction } = useContext(JobContext)
     const initJob = jobToEdit || {
         jobName: "",
-        hourlyPay: 0,
+        hourlyPay: "",
         jobNotes: "",
         jobLocation: ""
     };
     const [ jobForm, setJobForm ] = useState(initJob);
     
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         setJobForm(prevJobForm => ({...prevJobForm, [name]: value}))
     }
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        await submitFunction(jobForm);
+        submitFunction(jobForm);
+        setJobForm({
+            jobName: "",
+            hourlyPay: "",
+            jobNotes: "",
+            jobLocation: ""
+        });
         setDialogIsOpen(false);
     }
 
@@ -27,10 +34,33 @@ const JobForm = (props) => {
     return ( 
         <form className="job-form" onSubmit={handleSubmit} >
             <h2>{formHeadline}</h2>
-            <input type="text" name="jobName" value={jobForm.jobName} onChange={handleChange} />
-            <input type="number" name="hourlyPay" value={jobForm.hourlyPay} onChange={handleChange} />
-            <input type="text" name="jobLocation" value={jobForm.jobLocation} onChange={handleChange} />
-            <textarea name="jobNotes" value={jobForm.jobNotes} onChange={handleChange} cols="30" rows="10"></textarea>
+            <input 
+                type="text" 
+                name="jobName" 
+                value={jobForm.jobName} 
+                onChange={handleChange}
+                placeholder="Job Title"
+                required />
+            <input 
+                type="number"
+                name="hourlyPay" 
+                value={jobForm.hourlyPay} 
+                onChange={handleChange}
+                placeholder="Hourly Rate($)" />
+            <input 
+                type="text" 
+                name="jobLocation" 
+                value={jobForm.jobLocation} 
+                onChange={handleChange}
+                placeholder="Location" />
+            <textarea 
+                name="jobNotes" 
+                value={jobForm.jobNotes} 
+                onChange={handleChange} 
+                cols="30" 
+                rows="3"
+                style={{resize: 'none'}}
+                placeholder="Notes" /> 
             <button type="submit">Save</button>
         </form>
      );
