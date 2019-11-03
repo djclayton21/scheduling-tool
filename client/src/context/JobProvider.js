@@ -3,7 +3,7 @@ import userAxios from '../functions/userAxios.js'
 
 export const JobContext = React.createContext();
 
-const JobProvider = (props) => {
+const JobProvider = ({ children }) => {
     const initJobs = []
     const [ jobs, setJobs ] = useState(initJobs)
     
@@ -39,7 +39,7 @@ const JobProvider = (props) => {
             updateJob,
             deleteJob
         }} >
-            {props.children}
+            {children}
         </JobContext.Provider>
      );
 }
