@@ -21,7 +21,15 @@ employeeRouter.route('/')
                 res.status(500);
                 return next(err);
             }
-            return res.status(201).send(savedEmployee);
+            Employee.findOne({_id: savedEmployee._id})
+                .populate('jobs')
+                .exec((err, populatedEmployee) => {
+                    if (err) {
+                        res.status(500);
+                        return next(err);
+                    }
+                    return res.status(201).send(populatedEmployee)
+                })
         })
     })
   
@@ -90,7 +98,15 @@ employeeRouter.route('/:employeeId')
                 res.status(500);
                 return next(err);
             }
-            return res.status(200).send(updatedEmployee)
+            Employee.findOne({_id: updatedEmployee._id})
+                .populate('jobs')
+                .exec((err, populatedEmployee) => {
+                    if (err) {
+                        res.status(500);
+                        return next(err);
+                    }
+                    return res.status(200).send(populatedEmployee)
+                })
         })
     })
 

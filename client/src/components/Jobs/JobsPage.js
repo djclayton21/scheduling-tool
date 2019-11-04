@@ -45,7 +45,7 @@ const JobsPage = () => {
                 {mappedJobs}
             </ul>
             {dialogIsOpen && <ModalFull closeFunction={closeDialog} >
-                <JobForm formType={formType} jobToEdit={jobToEdit} setDialogIsOpen={setDialogIsOpen} dialogIsOpen={dialogIsOpen} />
+                <JobForm formType={formType} jobToEdit={jobToEdit} setDialogIsOpen={setDialogIsOpen} />
             </ModalFull>}
         </main>
      );

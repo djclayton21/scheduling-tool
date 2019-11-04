@@ -27,7 +27,7 @@ const App = () => {
                     setJobs(res.data)
                 })
                 .catch(err => console.error(err.response.data.errMsg))
-            userAxios.get('/api/employees')
+            userAxios.get('/api/employees/populated')
                 .then(res => {
                     setEmployees(res.data)
                 })

@@ -3,6 +3,7 @@ import { EmployeeContext } from '../../context/EmployeeProvider';
 import './style.css'
 import ModalFull from '../shared/ModalFull.js'
 import EmployeeTile from './EmployeeTile';
+import EmployeeForm from './EmployeeForm';
 
 const EmployeesPage = () => {
     const [ dialogIsOpen, setDialogIsOpen ] = useState(false)
@@ -43,6 +44,7 @@ const EmployeesPage = () => {
                 {mappedEmployees}
             </ul>
             {dialogIsOpen && <ModalFull closeFunction={closeDialog} >
+                <EmployeeForm formType={formType} employeeToEdit={employeeToEdit} setDialogIsOpen={setDialogIsOpen} />
             </ModalFull> }
         </main>
      );
