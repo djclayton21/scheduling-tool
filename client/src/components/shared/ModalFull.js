@@ -1,15 +1,15 @@
 import React from 'react';
 
 const ModalFull = (props) => {
-    const { setDialogIsOpen } = props;
+    const { closeFunction } = props;
 
     return ( 
-        <dialog className="modal-full" open>
+        <div className="modal-full" >
             <div className="modal-full-content">
-            <button onClick={() => {setDialogIsOpen(false)}}>x</button>
+            <button onClick={closeFunction}>x</button>
                 {props.children}
             </div>
-        </dialog>
+        </div>
      );
 }
  

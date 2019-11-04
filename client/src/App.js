@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import './style.css';
 
-import Navbar from './components/Navbar/Navbar';
-import Auth from './components/Auth/Auth';
-import Employees from './components/Employees/Employees.js';
-import Schedule from './components/Schedule/Schedule.js';
-import Home from './components/Home/Home.js';
+import Navbar from './components/Navbar/Navbar.js';
+import Auth from './components/Auth/Auth.js';
+import EmployeesPage from './components/Employees/EmployeesPage.js';
+import SchedulePage from './components/Schedule/SchedulePage.js';
+import HomePage from './components/Home/HomePage.js';
 import Title from './components/Title/Title.js';
 import JobsPage from './components/Jobs/JobsPage';
 
@@ -50,16 +50,16 @@ const App = () => {
                     {isLoggedIn ? <Redirect to="/" /> : <Auth />}
                 </Route>
                 <Route path="/employees">
-                    {isLoggedIn ? <Employees /> : <Redirect to="/auth" />}
+                    {isLoggedIn ? <EmployeesPage /> : <Redirect to="/auth" />}
                 </Route>
                 <Route path="/schedule">
-                    {isLoggedIn ? <Schedule /> : <Redirect to="/auth" />}  
+                    {isLoggedIn ? <SchedulePage /> : <Redirect to="/auth" />}  
                 </Route>
                 <Route path="/jobs">
                     {isLoggedIn ? <JobsPage /> : <Redirect to="/auth" />}  
                 </Route>
                 <Route path="/">
-                   {isLoggedIn ? <Home /> : <Redirect to="/auth" />}
+                   {isLoggedIn ? <HomePage /> : <Redirect to="/auth" />}
                 </Route>
             </Switch>
         </div>

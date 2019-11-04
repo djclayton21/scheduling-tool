@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css'
 
-const Home = () => {
+const HomePage = () => {
     return ( 
         <main className="home">
             Home
@@ -9,4 +9,4 @@ const Home = () => {
      );
 }
  
-export default Home;
+export default HomePage;

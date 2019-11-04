@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css'
 
-const Schedule = () => {
+const SchedulePage = () => {
     return ( 
         <main className="schedule">
             Schedule
@@ -9,4 +9,4 @@ const Schedule = () => {
      );
 }
  
-export default Schedule;
+export default SchedulePage;

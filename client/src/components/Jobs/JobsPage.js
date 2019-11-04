@@ -16,7 +16,9 @@ const JobsPage = () => {
         setJobToEdit(null);
         setDialogIsOpen(true);
     }
-
+    const closeDialog = () => {
+        setDialogIsOpen(false)
+    }
     const handleUpdateJob = (job) => {
         setFormType('updateJob');
         setJobToEdit(job);
@@ -28,7 +30,12 @@ const JobsPage = () => {
         confirmDelete && deleteJob(job);
     }
 
-    const mappedJobs = jobs.map(job => <JobTile job={job} handleUpdateJob={handleUpdateJob} handleDeleteJob={handleDeleteJob} key={job._id} />)
+    const mappedJobs = jobs.map(job => <JobTile 
+        job={job} 
+        handleUpdateJob={handleUpdateJob} 
+        handleDeleteJob={handleDeleteJob} 
+        key={job._id} 
+    />)
 
     return ( 
         <main className="jobs-page">
@@ -36,7 +43,7 @@ const JobsPage = () => {
             <ul className="jobs-list">
                 {mappedJobs}
             </ul>
-            {dialogIsOpen && <ModalFull setDialogIsOpen={setDialogIsOpen} >
+            {dialogIsOpen && <ModalFull closeFunction={closeDialog} >
                 <JobForm formType={formType} jobToEdit={jobToEdit} setDialogIsOpen={setDialogIsOpen} dialogIsOpen={dialogIsOpen} />
             </ModalFull>}
         </main>
