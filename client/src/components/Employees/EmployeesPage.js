@@ -17,6 +17,7 @@ const EmployeesPage = () => {
     }
     const closeDialog = () => {
         setDialogIsOpen(false);
+        setFormType('');
         console.log('tried to close')
     }
     const handleUpdateEmployee = (employee) => {
@@ -25,7 +26,7 @@ const EmployeesPage = () => {
         setDialogIsOpen(true);
     }
     const handleDeleteEmployee = (employee) => {
-        const confirmDelete = window.confirm(`Are you sure you want to delete '${employee.employeeName}'?`)
+        const confirmDelete = window.confirm(`Are you sure you want to delete '${employee.name}'?`)
         confirmDelete && deleteEmployee(employee);
     }
 
@@ -37,13 +38,12 @@ const EmployeesPage = () => {
     />)
 
     return ( 
-        <main className="employees-page" onClick={handleAddEmployee} >
+        <main className="employees-page" >
             <button className="employees-add-button" onClick={handleAddEmployee} >Add Employee</button>
             <ul className="employees-list">
                 {mappedEmployees}
             </ul>
             {dialogIsOpen && <ModalFull closeFunction={closeDialog} >
-                <div className="aaa">its something</div>
             </ModalFull> }
         </main>
      );
