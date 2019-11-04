@@ -18,7 +18,6 @@ const EmployeesPage = () => {
     const closeDialog = () => {
         setDialogIsOpen(false);
         setFormType('');
-        console.log('tried to close')
     }
     const handleUpdateEmployee = (employee) => {
         setFormType('updateEmployee');

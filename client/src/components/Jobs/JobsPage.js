@@ -18,6 +18,7 @@ const JobsPage = () => {
     }
     const closeDialog = () => {
         setDialogIsOpen(false)
+        setFormType('')
     }
     const handleUpdateJob = (job) => {
         setFormType('updateJob');
