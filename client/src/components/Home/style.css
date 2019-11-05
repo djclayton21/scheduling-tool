@@ -1,0 +1,23 @@
+.home-page li {
+    list-style: none;
+}
+.home-page ul {
+    padding-inline-start: 0;
+}
+.home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.schedule-tile {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto auto;
+    padding: 5px;
+}
+.new-schedule-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

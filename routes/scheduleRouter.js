@@ -17,7 +17,7 @@ scheduleRouter.route('/')
     })
     .post((req, res, next) => {
         req.body.userId = req.user._id;
-        const date = new Date(req.body.scheduleStart)
+        const date = new Date(req.body.scheduleStart + 'Z')
         req.body.scheduleStart = date
         req.body.scheduleEnd = moment(date).add(7, 'days').toDate();
         const newSchedule = new Schedule(req.body);
@@ -26,7 +26,7 @@ scheduleRouter.route('/')
                 res.status(500);
                 return next(err);
             }
-            return res.status(201).send(savedSchedule)
+            return res.status(201).send(savedSchedule.simpleSchedule())
         })
     })
 //simple versions, supports future only
@@ -38,7 +38,8 @@ scheduleRouter.route('/simple')
         }
         Schedule.find(
             {userId: req.user._id, scheduleEnd: { $gte: searchTime}},
-            'scheduleStart scheduleEnd scheduleNotes',
+            'scheduleStart scheduleEnd scheduleName',
+            {sort: {scheduleStart: 1}},
             (err, foundSchedules) => {
                 if (err) {
                     res.status(500);

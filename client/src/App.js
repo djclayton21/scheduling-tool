@@ -1,6 +1,12 @@
 import React, { useContext, useEffect } from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
+import userAxios from './functions/userAxios';
 import './style.css';
+
+import { UserContext } from './context/UserProvider.js';
+import { JobContext } from './context/JobProvider.js';
+import { EmployeeContext } from './context/EmployeeProvider.js';
+import { SimpleScheduleContext } from './context/SimpleScheduleProvider.js';
 
 import Navbar from './components/Navbar/Navbar.js';
 import Auth from './components/Auth/Auth.js';
@@ -10,15 +16,12 @@ import HomePage from './components/Home/HomePage.js';
 import Title from './components/Title/Title.js';
 import JobsPage from './components/Jobs/JobsPage';
 
-import { UserContext } from './context/UserProvider.js';
-import { JobContext } from './context/JobProvider';
-import { EmployeeContext } from './context/EmployeeProvider';
-import userAxios from './functions/userAxios';
 
 const App = () => {
     const { isLoggedIn } = useContext(UserContext);
     const { setJobs } = useContext(JobContext);
-    const { setEmployees } = useContext(EmployeeContext)
+    const { setEmployees } = useContext(EmployeeContext);
+    const { setSimpleSchedules } = useContext(SimpleScheduleContext);
 
     useEffect(() => {
         const getUserData = () => {
@@ -32,14 +35,20 @@ const App = () => {
                     setEmployees(res.data)
                 })
                 .catch(err => console.error(err.response.data.errMsg))
+            userAxios.get('/api/schedules/simple')
+                .then(res => {
+                    setSimpleSchedules(res.data)
+                })
+                .catch(err => console.error(err.response.data.errMsg))
         }
         const clearUserData = () => {
             setJobs([]);
-            setEmployees([])
+            setEmployees([]);
+            setSimpleSchedules([]);
         }
 
         isLoggedIn ? getUserData() : clearUserData()
-    }, [isLoggedIn, setJobs, setEmployees])
+    }, [isLoggedIn, setJobs, setEmployees, setSimpleSchedules])
     
 
     return ( 
@@ -52,13 +61,13 @@ const App = () => {
                 <Route path="/employees">
                     {isLoggedIn ? <EmployeesPage /> : <Redirect to="/auth" />}
                 </Route>
-                <Route path="/schedule">
+                <Route path="/schedule/:scheduleId">
                     {isLoggedIn ? <SchedulePage /> : <Redirect to="/auth" />}  
                 </Route>
                 <Route path="/jobs">
                     {isLoggedIn ? <JobsPage /> : <Redirect to="/auth" />}  
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                    {isLoggedIn ? <HomePage /> : <Redirect to="/auth" />}
                 </Route>
             </Switch>

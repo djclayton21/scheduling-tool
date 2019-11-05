@@ -47,11 +47,25 @@ const scheduleSchema = new Schema({
     scheduleNotes: {
         type: String,
         default: ""
-    }
+    },
+    scheduleName: {
+        type: String,
+        default: ""
+    },
+    jobs: [{
+        type: ObjectId,
+        ref: 'Job'
+    }]
 })
 
 scheduleSchema.pre('save', function(next){
     const schedule = this;
+
+    for (let i = 0; i < schedule.jobs.length; i++){
+        if (schedule.jobs[i]._id){
+            schedule.jobs[i] = schedule.jobs[i]._id
+        }
+    }
     
     for (let i = 0; i < schedule.monday.length; i++){
         if (schedule.monday[i]._id){
@@ -90,4 +104,15 @@ scheduleSchema.pre('save', function(next){
     }
     next()
 })
+
+scheduleSchema.methods.simpleSchedule = function(){
+    const {scheduleName, _id, scheduleStart, scheduleEnd } = this;
+    const simpleSchedule = {
+        scheduleName,
+        _id,
+        scheduleStart, 
+        scheduleEnd
+    }
+    return simpleSchedule
+}
 module.exports = mongoose.model('Schedule', scheduleSchema)

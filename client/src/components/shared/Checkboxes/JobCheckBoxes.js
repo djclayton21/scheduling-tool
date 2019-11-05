@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { JobContext } from '../../../context/JobProvider.js';
 import CheckBox from './CheckBox.js';
 
-const JobCheckBoxes = ({ initJobs, setFormState }) => {
+const JobCheckBoxes = ({ initJobs = [], setFormState }) => {
     const { jobs } = useContext(JobContext);
     const initCheckedJobs = jobs.map(job => (
         [job.jobName, initJobs.some(initJob => job._id === initJob._id)]
