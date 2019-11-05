@@ -17,6 +17,7 @@ const JobSchedule = ({ schedule, job, setSchedule }) => {
         const jobDayShifts = dayShifts.filter(dayShift => dayShift.job === job._id);
         return <DaySchedule dayOfWeek={jobDayOfWeek} momentDate={jobScheduleDay} shifts={jobDayShifts} setSchedule={setSchedule} job={job} key={`${job._id}-${jobScheduleDay.toDate()}`} />
     })
+    
     return ( 
         <div className="schedule-job" >
             <h2>{job.jobName}</h2>

@@ -15,7 +15,7 @@ const shiftSchema = new Schema({
         type: Date,
         required: true
     },
-    job: {
+    jobId: {
         type: ObjectId,
         ref: 'Job',
         required: true

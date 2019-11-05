@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ModalFull from '../shared/ModalFull.js'
 import ShiftTile from './ShiftTile';
 
 
 const DaySchedule = ({dayOfWeek, momentDate, shifts, job, setSchedule}) => {
+    const [ addShiftDialog, setAddShiftDialog ] = useState(false);
     const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
     const formattedDate = momentDate.format('MM/DD')
     const mappedShifts = shifts.map(shift => {
@@ -19,7 +21,11 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, setSchedule}) => {
             <div className="day-shifts" >
                 {mappedShifts}
             </div>
-        </div> 
+            {addShiftDialog && <ModalFull closeFunction={() => setAddShiftDialog(false)} >
+                
+            </ModalFull>}
+        </div>
+
     );
 }
  
