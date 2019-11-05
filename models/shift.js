@@ -5,7 +5,7 @@ const ObjectId = Schema.Types.ObjectId;
 const shiftSchema = new Schema({
     shiftName: {
         type: String,
-        required: true
+        default: ""
     },
     shiftStart: {
         type: Date,

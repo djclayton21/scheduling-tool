@@ -60,6 +60,7 @@ scheduleRouter.route('/populated/:scheduleId')
             .populate('friday')
             .populate('saturday')
             .populate('sunday')
+            .populate('jobs')
             .exec((err, populatedSchedule) => {
                 if (err) {
                     res.status(500);
