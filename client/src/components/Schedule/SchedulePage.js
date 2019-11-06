@@ -11,7 +11,6 @@ import ScheduleContainer from './ScheduleContainer.js';
 const SchedulePage = () => {
     const [ schedule, setSchedule ] = useState({})
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const [ firstLoad, setFirstLoad ] = useState(true)
 
     const { scheduleId } = useParams();
     useEffect(() => {
@@ -34,15 +33,13 @@ const SchedulePage = () => {
                 .then(res => console.log('saved!', res.data))
                 .catch(err => console.alert(err.response.data.errMsg))
         };
-        if(isLoaded && firstLoad){
-            setFirstLoad(false)
-        } else if (isLoaded) {
-            saveSchedule();
+        if(isLoaded){
+            saveSchedule()
         }
     },[
         isLoaded,
-        setFirstLoad,
-        schedule
+        schedule,
+        scheduleId
     ])
 
    
