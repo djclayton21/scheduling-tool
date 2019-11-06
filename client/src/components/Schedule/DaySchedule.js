@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import userAxios from '../../functions/userAxios.js'
 import ModalFull from '../shared/ModalFull.js'
 import ShiftTile from './ShiftTile';
 import ShiftForm from './ShiftForm.js';
@@ -22,7 +23,18 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
     }
     const handleDeleteShift = (shift) => {
         const confirmDelete = window.confirm(`Are you sure you want to delete that shift?`)
-        confirmDelete && console.log('delete', shift)
+        if (confirmDelete) {
+            userAxios.delete(`/api/shifts/${shift._id}`)
+                .then(res => {
+                    setSchedule(prevSchedule => {
+                        const dayShifts = prevSchedule[dayOfWeek];
+                        const newShifts = dayShifts.filter(shift => shift._id !== res.data._id)
+                        return {...prevSchedule, [dayOfWeek]: newShifts}
+                    })
+                })
+                .then()
+                .catch(err => console.error(err.response.data.errMsg))
+        }
     }
 
     const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);

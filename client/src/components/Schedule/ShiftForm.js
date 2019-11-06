@@ -47,7 +47,6 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
         userAxios.put(`/api/shifts/${shift._id}`, shift)
             .then(res => {
                 setSchedule(prevSchedule => {
-                    console.log(res.data)
                     const dayShifts = prevSchedule[dayOfWeek];
                     const newShifts = dayShifts.map(shift => shift._id === res.data._id ? res.data : shift);
                     return {...prevSchedule, [dayOfWeek]: newShifts}

@@ -20,12 +20,14 @@ const SchedulePage = () => {
                 setIsLoaded(true)
             })
             .catch(err => console.error(err.response.data.errMsg))
+        
     }, [scheduleId, setIsLoaded], 
     () => {
         setSchedule({})
         setIsLoaded(false)
+
     })
-    const updateSchedule = (schedule) => {
+    const saveSchedule = () => {
         userAxios.put(`/api/schedules/${scheduleId}`, schedule)
             .then(res => console.log('saved!', res.data))
             .catch(err => console.error(err.response.data.errMsg))
@@ -34,7 +36,7 @@ const SchedulePage = () => {
         <main className="schedule-page">
             {isLoaded && <ScheduleTitle schedule={schedule} />}
             {isLoaded && <ScheduleContainer schedule={schedule} setSchedule={setSchedule} />}
-            {isLoaded && <button onClick={() => updateSchedule(schedule)} >Save Schedule</button>}
+            {isLoaded && <button onClick={saveSchedule} >Save Schedule</button>}
         </main>
      );
 }
