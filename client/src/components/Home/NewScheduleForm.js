@@ -19,7 +19,7 @@ const NewScheduleForm = ({ setDialogIsOpen }) => {
         }))
     }
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault();     
         createSchedule(newScheduleForm);
         setDialogIsOpen(false);
     }

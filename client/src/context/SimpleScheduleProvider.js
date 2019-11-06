@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import userAxios from '../functions/userAxios.js';
 
 export const SimpleScheduleContext = React.createContext()
@@ -8,6 +9,7 @@ const SimpleScheduleProvider = ({ children }) => {
     const [ simpleSchedules, setSimpleSchedules ] = useState(initSchedules);
 
     const createSchedule = (newSchedule) => {
+        newSchedule.scheduleStart = moment(newSchedule.scheduleStart).toDate();
         userAxios.post('/api/schedules', newSchedule)
             .then(res => {
                 setSimpleSchedules(prevSchedules => {
@@ -31,6 +33,8 @@ const SimpleScheduleProvider = ({ children }) => {
 
     const updateSchedule = (updateSchedule) => {
         console.log('update', updateSchedule)
+        // newSchedule.scheduleStart = new Date(newSchedule.scheduleStart)
+
     }
 
     return ( 

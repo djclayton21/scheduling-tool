@@ -17,9 +17,7 @@ scheduleRouter.route('/')
     })
     .post((req, res, next) => {
         req.body.userId = req.user._id;
-        const date = new Date(req.body.scheduleStart + 'Z')
-        req.body.scheduleStart = date
-        req.body.scheduleEnd = moment(date).add(7, 'days').toDate();
+        req.body.scheduleEnd = moment(req.body.scheduleStart).add(7, 'days').toDate();
         const newSchedule = new Schedule(req.body);
         newSchedule.save((err, savedSchedule) => {
             if (err) {
