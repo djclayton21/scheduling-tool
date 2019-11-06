@@ -35,7 +35,7 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
         userAxios.post('/api/shifts', shift)
             .then(res => {
                 setSchedule(prevSchedule => {
-                    const dayShifts = prevSchedule[dayOfWeek];
+                    const dayShifts = [...prevSchedule[dayOfWeek]];
                     dayShifts.push(res.data)
                     const newShifts = dayShifts.sort((a, b) => new Date(a.shiftStart) - new Date(b.shiftEnd))
                     return {...prevSchedule, [dayOfWeek]: newShifts}
@@ -47,7 +47,7 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
         userAxios.put(`/api/shifts/${shift._id}`, shift)
             .then(res => {
                 setSchedule(prevSchedule => {
-                    const dayShifts = prevSchedule[dayOfWeek];
+                    const dayShifts = [...prevSchedule[dayOfWeek]];
                     const newShifts = dayShifts.map(shift => shift._id === res.data._id ? res.data : shift);
                     return {...prevSchedule, [dayOfWeek]: newShifts}
                 })

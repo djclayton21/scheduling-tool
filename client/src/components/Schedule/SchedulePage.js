@@ -11,8 +11,9 @@ import ScheduleContainer from './ScheduleContainer.js';
 const SchedulePage = () => {
     const [ schedule, setSchedule ] = useState({})
     const [ isLoaded, setIsLoaded ] = useState(false)
-    const { scheduleId } = useParams();
+    const [ firstLoad, setFirstLoad ] = useState(true)
 
+    const { scheduleId } = useParams();
     useEffect(() => {
         userAxios.get(`/api/schedules/populated/${scheduleId}`)
             .then(res => {
@@ -25,18 +26,31 @@ const SchedulePage = () => {
     () => {
         setSchedule({})
         setIsLoaded(false)
-
     })
-    const saveSchedule = () => {
-        userAxios.put(`/api/schedules/${scheduleId}`, schedule)
-            .then(res => console.log('saved!', res.data))
-            .catch(err => console.error(err.response.data.errMsg))
-    };  
+
+    useEffect(() => {
+        const saveSchedule = () => {
+            userAxios.put(`/api/schedules/${scheduleId}`, schedule)
+                .then(res => console.log('saved!', res.data))
+                .catch(err => console.alert(err.response.data.errMsg))
+        };
+        if(isLoaded && firstLoad){
+            setFirstLoad(false)
+        } else if (isLoaded) {
+            saveSchedule();
+        }
+    },[
+        isLoaded,
+        setFirstLoad,
+        schedule
+    ])
+
+   
+
     return ( 
         <main className="schedule-page">
             {isLoaded && <ScheduleTitle schedule={schedule} />}
             {isLoaded && <ScheduleContainer schedule={schedule} setSchedule={setSchedule} />}
-            {isLoaded && <button onClick={saveSchedule} >Save Schedule</button>}
         </main>
      );
 }

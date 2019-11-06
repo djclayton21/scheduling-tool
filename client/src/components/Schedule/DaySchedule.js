@@ -27,12 +27,11 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
             userAxios.delete(`/api/shifts/${shift._id}`)
                 .then(res => {
                     setSchedule(prevSchedule => {
-                        const dayShifts = prevSchedule[dayOfWeek];
+                        const dayShifts = [...prevSchedule[dayOfWeek]];
                         const newShifts = dayShifts.filter(shift => shift._id !== res.data._id)
                         return {...prevSchedule, [dayOfWeek]: newShifts}
                     })
                 })
-                .then()
                 .catch(err => console.error(err.response.data.errMsg))
         }
     }
@@ -40,7 +39,13 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
     const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
     const formattedDate = momentDate.format('MM/DD')
     const mappedShifts = shifts.map(shift => {
-        return <ShiftTile handleDeleteShift={handleDeleteShift} handleUpdateShift={handleUpdateShift} setSchedule={setSchedule} shift={shift} key={shift._id} />
+        return <ShiftTile 
+            handleDeleteShift={handleDeleteShift} 
+            handleUpdateShift={handleUpdateShift} 
+            setSchedule={setSchedule} 
+            shift={shift} 
+            key={shift._id} 
+        />
     })
 
     return ( 
