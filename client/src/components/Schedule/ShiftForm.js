@@ -21,7 +21,7 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
         shiftLocation: "",
         shiftNotes: "",
         minEmployees: 1,
-        maxEmployees: 1
+        maxEmployees: 1,
     }
     const initShiftTime = timeToUpdate || {
         startTime: "",
@@ -86,6 +86,7 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
             maxEmployees: shiftForm.maxEmployees,
             shiftStart: newShiftStart,
             shiftEnd: newShiftEnd,
+            employees: shiftForm.employees,
             jobId,
             scheduleId,
         };

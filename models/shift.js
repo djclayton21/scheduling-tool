@@ -57,6 +57,8 @@ shiftSchema.pre('save', function(next){
     for (let i = 0; i < shift.employees.length; i++){
         if (shift.employees[i]._id){
             shift.employees[i] = shift.employees[i]._id
+        } else if (shift.employees[i].length === 0){
+            shift.employees.splice(i, 1);
         }
     }
     if (shift.jobId._id){

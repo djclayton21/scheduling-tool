@@ -41,7 +41,8 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
     const mappedShifts = shifts.map(shift => {
         return <ShiftTile 
             handleDeleteShift={handleDeleteShift} 
-            handleUpdateShift={handleUpdateShift} 
+            handleUpdateShift={handleUpdateShift}
+            dayOfWeek={dayOfWeek} 
             setSchedule={setSchedule} 
             shift={shift} 
             key={shift._id} 

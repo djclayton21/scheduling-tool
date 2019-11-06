@@ -91,6 +91,12 @@ shiftRouter.route('/:shiftId')
         })
     })
     .put((req, res, next) => {
+        for (let i = 0; i < req.body.employees.length; i++){
+            if (!req.body.employees[i].length){
+                req.body.employees.splice(i, 1);
+                console.log(req.body.employees)
+            }
+        }
         Shift.findOneAndUpdate({_id: req.params.shiftId}, req.body, {new: true}, (err, updatedShift) => {
             if (err) {
                 res.status(500);
