@@ -1,6 +1,7 @@
 const express = require('express');
 const scheduleRouter = express.Router();
 const Schedule = require('../models/schedule.js');
+const Shift = require('../models/shift.js')
 const moment = require('moment');
 moment().format()
 
@@ -85,6 +86,12 @@ scheduleRouter.route('/:scheduleId')
                 res.status(500);
                 return next(err);
             }
+            Shift.deleteMany({scheduleId: removedSchedule._id},(err, res) => {
+                if (err) {
+                    res.status(500);
+                    return next(err);
+                }
+            })
             return res.status(200).send(removedSchedule);
         })
     })

@@ -36,6 +36,7 @@ const ShiftTile = ({ shift, dayOfWeek, setSchedule, handleUpdateShift, handleDel
     const availableEmployees = employees.filter(employee => (
         employee.jobs.some(job => job._id === shift.jobId)
     ))
+
     const employeeSelects = shiftEmployeesForm.map((employeeName, i) => (
         <ShiftEmployeeSelect shift={shift} availableEmployees={availableEmployees} shiftEmployeesForm={shiftEmployeesForm}setShiftEmployeesForm={setShiftEmployeesForm} formIndex={i} key={`${shift.id}-${i}`}/>
         ))

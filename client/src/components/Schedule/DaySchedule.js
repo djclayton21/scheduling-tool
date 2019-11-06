@@ -36,8 +36,6 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
         }
     }
 
-    const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
-    const formattedDate = momentDate.format('MM/DD')
     const mappedShifts = shifts.map(shift => {
         return <ShiftTile 
             handleDeleteShift={handleDeleteShift} 
@@ -48,7 +46,9 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
             key={shift._id} 
         />
     })
-
+    
+    const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
+    const formattedDate = momentDate.format('MM/DD')
     return ( 
         <div className="job-day" >
             <div>
