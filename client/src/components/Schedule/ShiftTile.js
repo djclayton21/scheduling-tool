@@ -7,12 +7,7 @@ import ShiftEmployeeSelect from './ShiftEmployeeSelect.js'
 const ShiftTile = ({ shift, dayOfWeek, setSchedule, handleUpdateShift, handleDeleteShift }) => {
     const { shiftStart, maxEmployees, employees: shiftEmployees } = shift;
     
-    const initShiftEmployees = [...shiftEmployees];
-    for (let i = 0; i < maxEmployees; i++){
-        if (!initShiftEmployees[i]){
-            initShiftEmployees[i] = "";
-        }
-    }
+    const initShiftEmployees = shiftEmployees || [];
     const [ shiftEmployeesForm, setShiftEmployeesForm ] = useState(initShiftEmployees);
     const isFirstLoad = useRef(true);
     const { employees } = useContext(EmployeeContext);
@@ -31,14 +26,34 @@ const ShiftTile = ({ shift, dayOfWeek, setSchedule, handleUpdateShift, handleDel
                 })
             })
             .catch(err => console.error(err.response.data.errMsg))
-    },[setSchedule, dayOfWeek,shift._id, shiftEmployeesForm])
+    },[setSchedule, dayOfWeek, shift._id, shiftEmployeesForm])
+
+    //maintain employee slots
+    useEffect(() => {
+        const newEmployees = [...shiftEmployees]
+        if (newEmployees.length > maxEmployees) {
+            newEmployees.splice(0, maxEmployees)
+        }
+        for (let i = 0; i < maxEmployees; i++){
+            if (!newEmployees[i]){
+                newEmployees[i] = ""
+            }
+        }
+        setShiftEmployeesForm(newEmployees);
+    }, [maxEmployees, setShiftEmployeesForm])
 
     const availableEmployees = employees.filter(employee => (
         employee.jobs.some(job => job._id === shift.jobId)
     ))
 
     const employeeSelects = shiftEmployeesForm.map((employeeName, i) => (
-        <ShiftEmployeeSelect shift={shift} availableEmployees={availableEmployees} shiftEmployeesForm={shiftEmployeesForm}setShiftEmployeesForm={setShiftEmployeesForm} formIndex={i} key={`${shift.id}-${i}`}/>
+        <ShiftEmployeeSelect 
+            shift={shift} 
+            availableEmployees={availableEmployees} 
+            shiftEmployeesForm={shiftEmployeesForm} 
+            setShiftEmployeesForm={setShiftEmployeesForm} 
+            formIndex={i} 
+            key={`${shift.id}-${i}`}/>
         ))
     const shiftStartDisplay = moment(shiftStart).format('HH:mm')
     

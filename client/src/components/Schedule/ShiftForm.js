@@ -72,6 +72,7 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        //format to model
         const startHour = shiftTime.startTime.substring(0, 2);
         const startMinute = shiftTime.startTime.substring(3);
         const endHour = shiftTime.endTime.substring(0, 2);
@@ -90,6 +91,8 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
             jobId,
             scheduleId,
         };
+
+        //check updating or adding
         if(shiftToUpdate) {
             shift._id = shiftToUpdate._id
         }
@@ -111,22 +114,26 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
     return ( 
         <form className="shift-form" onSubmit={handleSubmit} >
             {shiftToUpdate ? <h2>Edit Shift</h2>: <h2>Add Shift</h2> }
-            <label>Start Time:<input 
-                type="time" 
-                name="startTime" 
-                value={shiftTime.startTime}
-                onChange={handleTimeChange}
-                step="900"
-                required 
-            /></label>
-            <label>End Time:<input 
-                type="time" 
-                name="endTime" 
-                value={shiftTime.endTime} 
-                onChange={handleTimeChange}
-                step="900" 
-                required
-            /></label>
+            <label>Start Time:
+                <input 
+                    type="time" 
+                    name="startTime" 
+                    value={shiftTime.startTime}
+                    onChange={handleTimeChange}
+                    step="900"
+                    required 
+                />
+            </label>
+            <label>End Time:
+                <input 
+                    type="time" 
+                    name="endTime" 
+                    value={shiftTime.endTime} 
+                    onChange={handleTimeChange}
+                    step="900" 
+                    required
+                />
+            </label>
             <input 
                 type="text" 
                 name="shiftName" 
@@ -134,6 +141,17 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
                 onChange={handleFormChange} 
                 placeholder="Title" 
             />
+            <label >Max. Employees:
+                <input 
+                    type="number" 
+                    name="maxEmployees" 
+                    value={shiftForm.maxEmployees} 
+                    onChange={handleFormChange} 
+                    placeholder="Title"
+                    min="1"
+                    step="1"
+                />
+            </label>
             <input 
                 type="text" 
                 name="shiftLocation" 
