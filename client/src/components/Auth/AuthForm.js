@@ -18,8 +18,8 @@ const AuthForm = (props) => {
 
     return ( 
         <form className="auth-form" onSubmit={handleSubmit}>
-            <input type="username" name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="username" />
-            <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="password" />
+            <input className="auth-username"type="username" name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder="username" />
+            <input className="auth-password"type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="password" />
             <button>{formType}</button>
         </form>
      );

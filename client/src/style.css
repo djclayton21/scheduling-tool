@@ -5,9 +5,12 @@
 .app {
     display: grid;
     grid-template-rows: auto 1fr;
-    min-width: 100vw;
-    min-height: 100vh;
-    background: white;
+    width: 100vw;
+    height: 100vh;
+    background: #EAEAEA;
+    color: #242424;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 }
 
 nav {
@@ -20,6 +23,34 @@ main {
     flex-direction: column;
     align-items: center;
     margin: 0 auto;
+    padding: 1em;
+}
+main > * {
+    margin-top: 1em;
+}
+header {
+    position: relative;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    background: #333333;
+    color: #EAEAEA;
+    width: 100%;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+button {
+    padding: .5em;
+    font-size: 1.2em;
+    border: 1px solid #333333;
+    border-radius: 2px;
+    background: #3A7CB4;
+    color: #EAEAEA;
+    font-size: initial;
 }
 
 .modal-full {
@@ -51,3 +82,4 @@ main {
     height: 20px;
     color: purple;
 }
+

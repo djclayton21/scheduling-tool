@@ -1,0 +1,8 @@
+.navbar a {
+    font-size: initial;
+    color: #EAEAEA;
+    text-decoration: none;
+}
+.navbar .navbar-logout {
+    justify-self: right;
+}

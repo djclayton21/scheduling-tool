@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import userAxios from './functions/userAxios';
-import './style.css';
 
 import { UserContext } from './context/UserProvider.js';
 import { JobContext } from './context/JobProvider.js';

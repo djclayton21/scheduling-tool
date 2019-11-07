@@ -7,12 +7,12 @@ const Navbar = () => {
     const { logout } = useContext(UserContext);
     
     return ( 
-    <nav className="navbar">
+    <header className="navbar">
         <Link to="/" >Home</Link>
         <Link to="/jobs" >Jobs</Link>
         <Link to="/employees" >Employees</Link>
-        <button onClick={logout} >Logout</button>
-    </nav>
+        <button className="navbar-logout" onClick={logout} >Logout</button>
+    </header>
     );
 }
  

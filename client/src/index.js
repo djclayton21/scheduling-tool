@@ -6,7 +6,8 @@ import JobProvider from './context/JobProvider.js';
 import SimpleScheduleProvider from './context/SimpleScheduleProvider.js';
 import EmployeeProvider from './context/EmployeeProvider.js';
 import App from './App.js';
-import 'normalize.css';
+import './reset.css';
+import './style.css';
 
 
 ReactDOM.render(
