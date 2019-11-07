@@ -14,12 +14,13 @@ const SchedulePage = () => {
     const turnOnSave = useRef(false);
 
     const { scheduleId } = useParams();
+
     useEffect(() => {
         userAxios.get(`/api/schedules/populated/${scheduleId}`)
             .then(res => {
                 setSchedule(res.data);
                 setIsLoaded(true);
-                turnOnSave.current = true;
+                setTimeout(() => {turnOnSave.current = true}, 1000);
             })
             .catch(err => console.error(err.response.data.errMsg))
         
@@ -30,17 +31,18 @@ const SchedulePage = () => {
     })
 
     useEffect(() => {
-        if (turnOnSave.current) {
-            turnOnSave.current = false;
+        if(isLoaded && !turnOnSave.current){
             return;
-        }
+        } 
         const saveSchedule = () => {
             userAxios.put(`/api/schedules/${scheduleId}`, schedule)
                 .then(res => console.log('saved!', res.data))
                 .catch(err => console.alert(err.response.data.errMsg))
         };
-        if(isLoaded){
+        if (isLoaded && turnOnSave.current){
             saveSchedule()
+            turnOnSave.current = false;
+            setTimeout(() => {turnOnSave.current = true}, 1000);
         }
     },[
         isLoaded,
