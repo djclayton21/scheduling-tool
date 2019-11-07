@@ -1,20 +1,19 @@
-.employees-page li {
-    list-style: none;
+.employee-job-display {
+    font-size: .8em;
+    overflow: hidden;
+    word-wrap: none;
 }
-.employees-page ul {
-    padding-inline-start: 0;
-}
-.employees-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .employee-tile {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto auto;
-    padding: 5px;
+    max-width: 400px;
+}
+.employee-tile-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.employee-tile-info > span {
+    padding: .1em;
+
 }
 .employee-form {
     display: flex;

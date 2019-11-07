@@ -57,6 +57,26 @@ button {
     color: #EAEAEA;
     font-size: initial;
 }
+.tile {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    padding: 5px;
+    font-size: 1.2em;
+    box-shadow: -2px 2px 4px #242424;
+    border-radius: 2px;
+}
+
+.tile:hover {
+    background: #CFD5D5;
+}
+
+.tile-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .delete-button {
     color: #980000;
@@ -72,5 +92,9 @@ button {
     border: 0;
     background: 0; 
     font-size: 1.6em;
+}
+
+.big-button {
+    font-size: 1.4em;
 }
 

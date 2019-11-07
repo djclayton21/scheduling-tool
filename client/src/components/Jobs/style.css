@@ -1,20 +1,14 @@
-.jobs-page li {
-    list-style: none;
-}
-.jobs-page ul {
-    padding-inline-start: 0;
-}
-.jobs-page {
+.job-tile-info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.job-tile {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto auto;
-    padding: 5px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.1em;
+    max-width: 375px;
+    padding: .1em;
+}
+.job-tile {
+    max-width: 375px;
 }
 .job-form {
     display: flex;

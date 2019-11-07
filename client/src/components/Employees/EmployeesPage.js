@@ -39,8 +39,9 @@ const EmployeesPage = () => {
 
     return ( 
         <main className="employees-page" >
-            <button className="employees-add-button" onClick={handleAddEmployee} >Add Employee</button>
-            <ul className="employees-list">
+            <button className="employees-add-button big-button" onClick={handleAddEmployee} >Add Employee</button>
+            <ul className="tile-list">
+                <h2>Employees</h2>
                 {mappedEmployees}
             </ul>
             {dialogIsOpen && <ModalFull closeFunction={closeDialog} >
