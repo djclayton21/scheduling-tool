@@ -7,11 +7,15 @@ const Navbar = () => {
     const { logout } = useContext(UserContext);
     
     return ( 
-    <header className="navbar">
-        <Link to="/" >Home</Link>
-        <Link to="/jobs" >Jobs</Link>
-        <Link to="/employees" >Employees</Link>
-        <button className="navbar-logout" onClick={logout} >Logout</button>
+    <header >
+        <nav className="navbar">
+            <ul>
+                <Link to="/" >Home</Link>
+                <Link to="/jobs" >Jobs</Link>
+                <Link to="/employees" >Employees</Link>
+            </ul>
+            <button className="navbar-logout" onClick={logout} >Logout</button>
+        </nav>
     </header>
     );
 }

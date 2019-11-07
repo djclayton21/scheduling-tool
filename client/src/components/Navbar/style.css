@@ -1,8 +1,16 @@
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 .navbar a {
     font-size: initial;
     color: #EAEAEA;
     text-decoration: none;
 }
-.navbar .navbar-logout {
-    justify-self: right;
+.navbar ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }

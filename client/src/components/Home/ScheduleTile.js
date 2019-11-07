@@ -3,13 +3,15 @@ import moment from 'moment';
 
 const ScheduleTile = ({ schedule, handleUpdateSchedule, handleDeleteSchedule}) => {
     const { scheduleName, scheduleStart, scheduleEnd } = schedule;
-    const scheduleRange = `${moment(scheduleStart).format('MM/DD/YY')}-${moment(scheduleEnd).format('MM/DD/YY')}`;
+    const scheduleRange = `${moment(scheduleStart).format('MM/DD/YY')} - ${moment(scheduleEnd).format('MM/DD/YY')}`;
     return ( 
         <li className="schedule-tile">
-            <span className="schedule-dates">{scheduleRange}</span>
-            <span className="schedule-name">{scheduleName}</span>
-            <button onClick={() => handleUpdateSchedule(schedule)} >Edit</button>
-            <button onClick={() => handleDeleteSchedule(schedule)} >Delete</button>
+            <div className="schedule-tile-info">
+                <span className="schedule-dates">{scheduleRange}</span>
+                <span className="schedule-name">{scheduleName}</span>
+            </div>
+            <button className="edit-button" onClick={() => handleUpdateSchedule(schedule)} ><i class="fas fa-cog"></i></button>
+            <button className="delete-button" onClick={() => handleDeleteSchedule(schedule)} ><i class="fas fa-trash"></i></button>
         </li>
      );
 }

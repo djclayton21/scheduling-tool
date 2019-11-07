@@ -7,7 +7,7 @@
     grid-template-rows: auto 1fr;
     width: 100vw;
     height: 100vh;
-    background: #EAEAEA;
+    background: #CFD5D5;
     color: #242424;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
@@ -24,24 +24,29 @@ main {
     align-items: center;
     margin: 0 auto;
     padding: 1em;
+    width: 100%;
+    overflow: hidden;
+    background: #EAEAEA;
 }
 main > * {
     margin-top: 1em;
 }
 header {
     position: relative;
-    font-size: 1.8em;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     padding: 1rem;
     background: #333333;
     color: #EAEAEA;
     width: 100%;
 }
-
+h1 {
+    font-size: 1.8em;
+}
 h2 {
     font-size: 1.6em;
+    padding: .5em 0;
 }
 button {
     padding: .5em;
@@ -53,33 +58,19 @@ button {
     font-size: initial;
 }
 
-.modal-full {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 3;
+.delete-button {
+    color: #980000;
+    padding: .2em;
+    border: 0;
+    background: 0;  
+    font-size: 1.6em;
 }
-.modal-full-content {
-    position: relative;
-    top: 20%;
-    border: 2px solid black;
-    background: white;
-    padding: 20px;
-    height: fit-content;
-}
-.modal-full-content > button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    background: none;
-    width: 20px;
-    height: 20px;
-    color: purple;
+
+.edit-button {
+    color: #242424;
+    padding: .2em;
+    border: 0;
+    background: 0; 
+    font-size: 1.6em;
 }
 

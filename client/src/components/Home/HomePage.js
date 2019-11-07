@@ -35,9 +35,12 @@ const HomePage = () => {
     return ( 
         <main className="home-page">
             <button className="home-new-schedule-button" onClick={handleCreateSchedule} >New Schedule</button>
-            <ul className="schedule-list">
-                {mappedSimpleSchedules}
-            </ul>
+            <section className="schedule-list">
+                <h2>Schedules</h2>
+                <ul >
+                    {mappedSimpleSchedules}
+                </ul>
+            </section>
             { dialogIsOpen && <ModalFull closeFunction={() => setDialogIsOpen(false)} >
                 <NewScheduleForm setDialogIsOpen={setDialogIsOpen} />
             </ModalFull> }

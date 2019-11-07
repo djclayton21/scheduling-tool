@@ -3,7 +3,9 @@ import React from 'react';
 const Title = () => {
     return (
         <header>
-            Simple Scheduling
+            <h1>
+                Simple Scheduling
+            </h1>
         </header>
     );
 }

@@ -1,20 +1,29 @@
-.home-page li {
-    list-style: none;
+.schedule-list {
+    text-align: center;
+    width: 100%;
 }
-.home-page ul {
-    padding-inline-start: 0;
-}
-.home-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .schedule-tile {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr auto auto;
+    grid-template-columns: 1fr auto auto;
     padding: 5px;
+    font-size: 1.2em;
+    box-shadow: -2px 2px 4px #242424;
+    border-radius: 2px;
+}
+.schedule-tile:hover {
+    background: #CFD5D5;
+}
+.schedule-tile > * {
+    display: flex;
+    align-items: center;
+    box-shadow: #242424;
+}
+.schedule-tile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2em;
 }
 .new-schedule-form {
     display: flex;
