@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ShiftEmployeeSelect = ({shift, shiftEmployeesForm, formIndex,  availableEmployees, setShiftEmployeesForm}) => {
+const ShiftEmployeeSelect = ({shift, shiftEmployeesForm, employeeId, formIndex,  availableEmployees, setShiftEmployeesForm}) => {
 
     //select options
     const mappedAvailableEmployees = availableEmployees.map((employee, i) => (
