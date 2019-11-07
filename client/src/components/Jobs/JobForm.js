@@ -41,12 +41,13 @@ const JobForm = (props) => {
                 onChange={handleChange}
                 placeholder="Job Title"
                 required />
-            <input 
-                type="number"
-                name="hourlyPay" 
-                value={jobForm.hourlyPay} 
-                onChange={handleChange}
-                placeholder="Hourly Rate($)" />
+                <input
+                    id="hourlyPay" 
+                    type="number"
+                    name="hourlyPay" 
+                    value={jobForm.hourlyPay} 
+                    onChange={handleChange}
+                    placeholder="Hourly Rate" />
             <input 
                 type="text" 
                 name="jobLocation" 

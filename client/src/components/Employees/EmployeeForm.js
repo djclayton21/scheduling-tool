@@ -32,7 +32,7 @@ const EmployeeForm = (props) => {
         });
         setDialogIsOpen(false);
     }
-    const formHeadline = formType === 'createEmployee' ? 'Add Employee': `Edit '${employeeToEdit.name}`;
+    const formHeadline = formType === 'createEmployee' ? 'Add Employee': `Edit '${employeeToEdit.name}'`;
 
     return ( 
         <form className="employee-form" onSubmit={handleSubmit} >

@@ -20,3 +20,6 @@
     flex-direction: column;
     align-items: center;
 }
+.employee-form input, .employee-form textarea {
+    margin-bottom: 1em;
+}
