@@ -61,7 +61,8 @@ input, textarea {
     border: 1px solid #333333;
     background: #CFD5D5;
     font-size: 1.1em;
-    padding: .1em;
+    padding: 5px;
+    width: 85%;
 }
 
 .tile {
