@@ -2,17 +2,18 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const expressJwt = require('express-jwt')
+const expressJwt = require('express-jwt');
+const path = require('path');
 require('dotenv').config();
 const PORT = process.env.PORT || 6565;
 
 //universal middleware
 app.use(express.json());
 app.use(morgan('dev'));
-
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 //connect to DB
-mongoose.connect('mongodb://localhost:27017/schedulingdb', 
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost:27017/schedulingdb', 
     {
         useNewUrlParser: true,
         useFindAndModify: false,
@@ -37,5 +38,7 @@ app.use((err, req, res, next) => {
     return res.send({errMsg: err.message});
 })
 //listen
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+})
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
