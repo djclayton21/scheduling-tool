@@ -25,7 +25,7 @@ main {
     margin: 0 auto;
     padding: 1em;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
     background: #EAEAEA;
 }
 main > * {
@@ -37,7 +37,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    background: #333333;
+    background: #193E54;
     color: #EAEAEA;
     width: 100%;
 }
@@ -63,8 +63,7 @@ input, textarea {
     font-size: 1.1em;
     padding: .1em;
 }
-::placeholder {
-}
+
 .tile {
     width: 100%;
     display: grid;
@@ -73,6 +72,8 @@ input, textarea {
     font-size: 1.2em;
     box-shadow: -2px 2px 4px #242424;
     border-radius: 2px;
+    background: #EAEAEA;
+    margin: .2em;
 }
 
 .tile:hover {
@@ -87,7 +88,7 @@ input, textarea {
 }
 
 .delete-button {
-    color: #980000;
+    color: rgb(184, 53, 53);
     padding: .2em;
     border: 0;
     background: 0;  
@@ -101,7 +102,13 @@ input, textarea {
     background: 0; 
     font-size: 1.6em;
 }
-
+.add-button {
+    color: #3D8941;
+    padding: .2em;
+    border: 0;
+    background: 0; 
+    font-size: 1.6em;
+}
 .big-button {
     font-size: 1.4em;
 }

@@ -36,7 +36,8 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
         }
     }
 
-    const mappedShifts = shifts.map(shift => {
+    const sortedShifts = shifts.sort((a , b) => (new Date(a.shiftStart) - new Date(b.shiftStart)))
+    const mappedShifts = sortedShifts.map(shift => {
         return <ShiftTile 
             handleDeleteShift={handleDeleteShift} 
             handleUpdateShift={handleUpdateShift}
@@ -47,18 +48,17 @@ const DaySchedule = ({dayOfWeek, momentDate, shifts, job, scheduleId, setSchedul
         />
     })
     
-    const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
+    const formattedDoW = dayOfWeek[0].toUpperCase() + dayOfWeek.slice(1);
     const formattedDate = momentDate.format('MM/DD')
     return ( 
         <div className="job-day" >
-            <div>
-                <span>{formattedDoW}</span>
-                <span>{formattedDate}</span>
-                <button onClick={handleAddShift}>Add Shift</button>
+            <div className="job-day-header">
+                <span className="day-header-date">{`${formattedDoW} ${formattedDate}`}</span>
+                <button className="add-shift add-button" onClick={handleAddShift}><i className="far fa-calendar-plus"></i></button>
             </div>
-            <div className="day-shifts" >
+            <ul className="day-shifts" >
                 {mappedShifts}
-            </div>
+            </ul>
             {shiftFormDialog && <ModalFull closeFunction={closeDialog} >
                 <ShiftForm 
                     shiftToUpdate={shiftToUpdate}

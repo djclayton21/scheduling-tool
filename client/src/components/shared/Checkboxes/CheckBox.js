@@ -3,7 +3,7 @@ import React from 'react';
 const CheckBox = (props) => {
     const { name, isChecked, handleChange } = props;
     return (
-            <label >
+            <label className="checkbox-label">
                 <input type="checkbox" name={name} checked={isChecked} onChange={handleChange} />
             {name}</label>
     );

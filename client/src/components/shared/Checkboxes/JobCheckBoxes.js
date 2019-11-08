@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { JobContext } from '../../../context/JobProvider.js';
 import CheckBox from './CheckBox.js';
+import './style.css'
 
 const JobCheckBoxes = ({ initJobs = [], setFormState }) => {
     const { jobs } = useContext(JobContext);

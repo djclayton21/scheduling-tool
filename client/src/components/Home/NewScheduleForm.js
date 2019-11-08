@@ -27,14 +27,14 @@ const NewScheduleForm = ({ setDialogIsOpen }) => {
     return ( 
         <form className="new-schedule-form" onSubmit={handleSubmit} >
             <h2>New Schedule</h2>
-            <label>Start Date:
-                <input 
-                    type="date" 
-                    name="scheduleStart" 
-                    value={newScheduleForm.scheduleStart}
-                    onChange={handleChange}
-                />
+            <label>Start Date
             </label>
+            <input 
+                type="date" 
+                name="scheduleStart" 
+                value={newScheduleForm.scheduleStart}
+                onChange={handleChange}
+            />
             <input 
                 type="text" 
                 name="scheduleName" 

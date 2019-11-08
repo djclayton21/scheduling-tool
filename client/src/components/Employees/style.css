@@ -9,11 +9,11 @@
 .employee-tile-info {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .employee-tile-info > span {
-    padding: .1em;
-
+    padding: 0 5px;
+    width: 100%;
 }
 .employee-form {
     display: flex;

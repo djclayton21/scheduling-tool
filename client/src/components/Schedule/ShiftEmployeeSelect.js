@@ -17,10 +17,13 @@ const ShiftEmployeeSelect = ({shift, shiftEmployeesForm, employeeId, formIndex, 
         
     }
     return ( 
-            <select className="employee-select" value={shiftEmployeesForm[formIndex]} onChange={handleChange}>
-                <option value=""></option>
-                {mappedAvailableEmployees}
-            </select>
+            <div className="select-container">
+                <i className="fas fa-angle-down dropdown"></i>
+                <select className="employee-select" value={shiftEmployeesForm[formIndex]} onChange={handleChange}>
+                    <option value=""> ---</option>
+                    {mappedAvailableEmployees}
+                </select>
+            </div>
      );
 }
  

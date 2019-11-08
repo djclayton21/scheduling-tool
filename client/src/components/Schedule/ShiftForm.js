@@ -114,26 +114,26 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
     return ( 
         <form className="shift-form" onSubmit={handleSubmit} >
             {shiftToUpdate ? <h2>Edit Shift</h2>: <h2>Add Shift</h2> }
-            <label>Start Time:
-                <input 
-                    type="time" 
-                    name="startTime" 
-                    value={shiftTime.startTime}
-                    onChange={handleTimeChange}
-                    step="900"
-                    required 
-                />
+            <label>Start Time
             </label>
-            <label>End Time:
-                <input 
-                    type="time" 
-                    name="endTime" 
-                    value={shiftTime.endTime} 
-                    onChange={handleTimeChange}
-                    step="900" 
-                    required
-                />
+            <input 
+                type="time" 
+                name="startTime" 
+                value={shiftTime.startTime}
+                onChange={handleTimeChange}
+                step="900"
+                required 
+            />
+            <label>End Time
             </label>
+            <input 
+                type="time" 
+                name="endTime" 
+                value={shiftTime.endTime} 
+                onChange={handleTimeChange}
+                step="900" 
+                required
+            />
             <input 
                 type="text" 
                 name="shiftName" 
@@ -141,17 +141,17 @@ const ShiftForm = ({shiftToUpdate, dayOfWeek, momentDate, jobId, scheduleId, set
                 onChange={handleFormChange} 
                 placeholder="Title" 
             />
-            <label >Max. Employees:
-                <input 
-                    type="number" 
-                    name="maxEmployees" 
-                    value={shiftForm.maxEmployees} 
-                    onChange={handleFormChange} 
-                    placeholder="Title"
-                    min="1"
-                    step="1"
-                />
+            <label >Max. Employees
             </label>
+            <input 
+                type="number" 
+                name="maxEmployees" 
+                value={shiftForm.maxEmployees} 
+                onChange={handleFormChange} 
+                placeholder="Title (optional)"
+                min="1"
+                step="1"
+            />
             <input 
                 type="text" 
                 name="shiftLocation" 

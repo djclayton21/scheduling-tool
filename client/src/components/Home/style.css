@@ -13,3 +13,6 @@
     flex-direction: column;
     align-items: center;
 }
+.new-schedule-form input, .new-schedule-form textarea, .new-schedule-form label {
+    margin-bottom: 1em;
+}

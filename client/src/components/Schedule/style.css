@@ -1,10 +1,156 @@
+
+.schedule-page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+}
+.schedule-page .tile {
+    max-width: 350px;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+.schedule-header > span{
+    font-size: 1.2em;
+    padding: .5em;
+}
+
+.shift-form {
+    display: flex;
+    align-items: center;
+}
+
+.add-shift {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.schedule-job {
+    background: #193E54;
+    padding: .8em;
+    border-radius: 10px;
+    margin-top: 1em;
+    width: 100%;
+    max-width: 350px;
+}
+.schedule-job > h2 {
+    padding: .5em;
+    color: #EAEAEA;
+}
+
 .days-container {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, auto);
+    background: #CFD5D5;
+    padding: 5px;
+    border-radius: 2px;
+    grid-gap: 5px;
+}
+.job-day {
+    border-radius: 2px;
+    padding: 5px;
+    background: #EAEAEA;
+    font-size: 1.2em;
+}
+.job-day-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 2px;
+    background: #EAEAEA;
+}
+.day-header-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shift-tile {
+    border-radius: 2px;
+    padding-top: .2em;
+}
+
+
+.shift-header {
+    font-size: 1em;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    color: #EAEAEA;
+    background: #333333;
+    border-radius: 2px;
+    padding: 2px;
+}
+.shift-header .edit-button {
+    color: #EAEAEA;
+}
+.shift-header button {
+    font-size:1em;
+    color: #AA2E2E;
+    padding: 2px 5px;
+}
+.shift-header span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.employee-select-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.employee-select {
+    font-size: 1em;
+    padding: 2px 5px;
+    text-align: center;
+    margin-top: 5px;
+    border: 1px solid #333333;
+    width: 100%;
+    appearance: none;
+}
+
+.dropdown {
+    position: absolute;
+    top: .75em;
+    right: .5em;
+}
+.select-container {
+    position: relative;
+    width: 100%;
 }
 
 .shift-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: column;
+}
+.shift-form input, .shift-form textarea, .shift-form label {
+    margin-bottom: 1em;
+}
+
+@media only screen and (min-width: 750px){
+    .days-container {
+        grid-template-columns: repeat(7, auto);
+        grid-template-rows: auto;
+    }
+    .schedule-job {
+        max-width: none;
+        min-width: 1075px;
+        align-self: flex-start;
+    }
+    .job-day {
+        font-size: 1em;
+    }
+    .shift-header {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+    .shift-header span {
+        grid-column: 1/-1;
+        grid-row: 2/3;
+        font-size: .9em;
+    }
 }

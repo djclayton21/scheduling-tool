@@ -17,6 +17,7 @@
     background: white;
     padding: 40px 20px;
     height: fit-content;
+    max-width: 90%;
 }
 .modal-close-button {
     position: absolute;

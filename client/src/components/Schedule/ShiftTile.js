@@ -5,7 +5,7 @@ import { EmployeeContext } from '../../context/EmployeeProvider.js';
 import ShiftEmployeeSelect from './ShiftEmployeeSelect.js'
 
 const ShiftTile = ({ shift, dayOfWeek, setSchedule, handleUpdateShift, handleDeleteShift }) => {
-    const { shiftStart, maxEmployees, employees: shiftEmployees } = shift;
+    const { shiftStart, shiftEnd, maxEmployees, employees: shiftEmployees } = shift;
     
     const initShiftEmployees = shiftEmployees || [];
     const [ shiftEmployeesForm, setShiftEmployeesForm ] = useState(initShiftEmployees);
@@ -56,16 +56,15 @@ const ShiftTile = ({ shift, dayOfWeek, setSchedule, handleUpdateShift, handleDel
             formIndex={i} 
             key={`${shift.id}-${i}`}/>
         ))
-    const shiftStartDisplay = moment(shiftStart).format('HH:mm')
+    const shiftStartDisplay = moment(shiftStart).format('h:mm a') + ' - ' + moment(shiftEnd).format('h:mm a')
     
     return ( 
         <div className="shift-tile">
             <div className="shift-header">
                 <span>{shiftStartDisplay}</span>
-                <span>{shift.shiftName}</span>
+                <button className="edit-button"onClick={() => handleUpdateShift(shift)} ><i className="fas fa-cog"></i></button>
+                <button className="delete-button"onClick={() => handleDeleteShift(shift)} ><i className="fas fa-trash"></i></button>
             </div>
-            <button onClick={() => handleUpdateShift(shift)} >Edit</button>
-            <button onClick={() => handleDeleteShift(shift)} >Delete</button>
             <ul className="employee-select-list">
                 {employeeSelects}
             </ul>
